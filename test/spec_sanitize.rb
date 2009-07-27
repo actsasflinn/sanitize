@@ -253,6 +253,10 @@ describe 'Custom configs' do
     input = '<a href="/wiki/Special:Random">Random Page</a>'
     Sanitize.clean(input, { :elements => ['a'], :attributes => {'a' => ['href']}, :protocols => { 'a' => { 'href' => [:relative] }} }).should.equal(input)
   end
+
+  should 'allow HTML entities when configured with escape_entities => false' do
+    Sanitize.clean("I wouldn't always want escaped entities", :escape_entities => false).should.equal("I wouldn't always want escaped entities")
+  end
 end
 
 describe 'Sanitize.clean' do

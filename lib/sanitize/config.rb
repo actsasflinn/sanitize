@@ -28,6 +28,9 @@ class Sanitize
       # comments.
       :allow_comments => false,
 
+      # Whether or not to escape HTML entities.
+      :escape_entities => true,
+
       # HTML elements to allow. By default, no elements are allowed (which means
       # that all HTML will be stripped).
       :elements => [],

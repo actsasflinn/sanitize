@@ -140,8 +140,10 @@ class Sanitize
     # Make one last pass through the fragment and encode all special HTML chars
     # as entities. This eliminates certain types of maliciously-malformed nested
     # tags.
-    fragment.search('*') do |node|
-      node.swap(Sanitize.encode_html(node.to_original_html)) if node.text?
+    if @config[:escape_entities]
+      fragment.search('*') do |node|
+        node.swap(Sanitize.encode_html(node.to_original_html)) if node.text?
+      end
     end
 
     result = fragment.to_s
